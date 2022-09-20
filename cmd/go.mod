@@ -9,7 +9,10 @@ go 1.16
 require github.com/google/cadvisor v0.0.0
 
 // Use the relative local source of the github.com/google/cadvisor library to build
-replace github.com/google/cadvisor => ../
+replace (
+	github.com/google/cadvisor => ../
+	github.com/opencontainers/runc v1.1.3 => github.com/phanhuy1502/runc v0.0.0-20220920092223-d29eb1ecf37b
+)
 
 require (
 	github.com/Rican7/retry v0.1.1-0.20160712041035-272ad122d6e5

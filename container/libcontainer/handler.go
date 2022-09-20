@@ -802,6 +802,11 @@ func setMemoryStats(s *cgroups.Stats, ret *info.ContainerStats) {
 	ret.Memory.Usage = s.MemoryStats.Usage.Usage
 	ret.Memory.MaxUsage = s.MemoryStats.Usage.MaxUsage
 	ret.Memory.Failcnt = s.MemoryStats.Usage.Failcnt
+	ret.Memory.EventCnt.ReclaimLowCnt = s.MemoryStats.EventsCnt.ReclaimLowCnt
+	ret.Memory.EventCnt.ReclaimHighCnt = s.MemoryStats.EventsCnt.ReclaimHighCnt
+	ret.Memory.EventCnt.MaxCnt = s.MemoryStats.EventsCnt.MaxCnt
+	ret.Memory.EventCnt.OomCnt = s.MemoryStats.EventsCnt.OomCnt
+	ret.Memory.EventCnt.OomKillCnt = s.MemoryStats.EventsCnt.OomKillCnt
 
 	if cgroups.IsCgroup2UnifiedMode() {
 		ret.Memory.Cache = s.MemoryStats.Stats["file"]

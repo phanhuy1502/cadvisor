@@ -453,6 +453,71 @@ func NewPrometheusCollector(i infoProvider, f ContainerLabelsFunc, includedMetri
 					}
 				},
 			},
+			{
+				name: "container_memory_events_max",
+				help:        "memory.events max (cgroupv2)",
+				valueType:   prometheus.CounterValue,
+				getValues: func(s *info.ContainerStats) metricValues {
+					return metricValues{
+						{
+							value:     float64(s.Memory.EventCnt.MaxCnt),
+							timestamp: s.Timestamp,
+						},
+					}
+				},
+			},
+			{
+				name: "container_memory_events_high",
+				help:        "memory.events high (cgroupv2)",
+				valueType:   prometheus.CounterValue,
+				getValues: func(s *info.ContainerStats) metricValues {
+					return metricValues{
+						{
+							value:     float64(s.Memory.EventCnt.ReclaimHighCnt),
+							timestamp: s.Timestamp,
+						},
+					}
+				},
+			},
+			{
+				name: "container_memory_events_low",
+				help:        "memory.events low (cgroupv2)",
+				valueType:   prometheus.CounterValue,
+				getValues: func(s *info.ContainerStats) metricValues {
+					return metricValues{
+						{
+							value:     float64(s.Memory.EventCnt.ReclaimLowCnt),
+							timestamp: s.Timestamp,
+						},
+					}
+				},
+			},
+			{
+				name: "container_memory_events_oom",
+				help:        "memory.events oom (cgroupv2)",
+				valueType:   prometheus.CounterValue,
+				getValues: func(s *info.ContainerStats) metricValues {
+					return metricValues{
+						{
+							value:     float64(s.Memory.EventCnt.OomCnt),
+							timestamp: s.Timestamp,
+						},
+					}
+				},
+			},
+			{
+				name: "container_memory_events_oom_kill",
+				help:        "memory.events oom (cgroupv2)",
+				valueType:   prometheus.CounterValue,
+				getValues: func(s *info.ContainerStats) metricValues {
+					return metricValues{
+						{
+							value:     float64(s.Memory.EventCnt.OomKillCnt),
+							timestamp: s.Timestamp,
+						},
+					}
+				},
+			},
 		}...)
 	}
 	if includedMetrics.Has(container.CPUSetMetrics) {
